@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-app.use(express.static('../dist/iaweb'));
+app.use(express.static(__dirname + '/dist/iaweb'));
 app.get('/*', function(req,res) {
-  res.sendFile(path.join('../dist/iaweb/index.html'));});
+  res.sendFile('/dist/iaweb/index.html', { root: __dirname });
+});
 app.listen(process.env.PORT || 8080);
