@@ -15,7 +15,7 @@ export class SbrComponent implements OnInit {
 
   ngOnInit(): void {
     Swal.fire({
-      title: 'A continuación se le presentará una breve encuesta',
+      title: 'A continuación se le presentará una breve encuesta ',
       confirmButtonText: 'Continuar',
       backdrop: false
     }).then((result) => {
