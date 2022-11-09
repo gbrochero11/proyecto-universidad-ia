@@ -1,0 +1,7 @@
+.container-form{
+  height: 200px;
+}
+.container-button{
+  display: flex;
+  justify-content: space-around;
+}

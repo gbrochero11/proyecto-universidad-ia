@@ -1,0 +1,92 @@
+<div class="p-5 container" [@openCloseX]>
+  <div class="container p-5 bg-light border-3 rounded-3">
+    <div class="container">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="container-form">
+
+          <div *ngIf="questionIndex==0" [@openCloseX]>
+            <div class="text-center pb-3">
+              <h2>¿Se le dificulta respirar?</h2>
+            </div>
+            <div class="pt-5 text-center">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="first" id="inlineRadio1" value="S" formControlName="first">
+                <label class="form-check-label" for="inlineRadio1">Si</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="first" id="inlineRadio2" value="N" formControlName="first">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="questionIndex==1" [@openClose]>
+            <div class="text-center">
+              <h2>¿Sufre o ha sufrido de asma y/o brohonquites aguda?</h2>
+            </div>
+            <div class="pt-5 text-center">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="second" id="inlineSecondRadio1" value="S" formControlName="second">
+                <label class="form-check-label" for="inlineSecondRadio1">Si</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="second" id="inlineSecondRadio2" value="N" formControlName="second">
+                <label class="form-check-label" for="inlineSecondRadio2">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="questionIndex==2" [@openCloseX]>
+            <div class="text-center">
+              <h2>¿Ha tosido sangre?</h2>
+            </div>
+            <div class="pt-5 text-center">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="third" id="inlineThirdRadio1" value="S" formControlName="third">
+                <label class="form-check-label" for="inlineThirdRadio1">Si</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="third" id="inlineThirdRadio2" value="N" formControlName="third">
+                <label class="form-check-label" for="inlineThirdRadio2">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="questionIndex==3" [@openClose]>
+            <div class="text-center">
+              <h2>¿Hace cuantos dias tiene estos sintomas?</h2>
+            </div>
+
+            <div class="pt-5 text-center">
+              <input type="range" class="form-range" min="0" max="30" step="1" id="range" formControlName="fourth" (mousemove)="setRange()" (change)="setRange()">
+              <label>{{range}}</label>
+            </div>
+          </div>
+
+          <div *ngIf="questionIndex==4" [@openCloseX]>
+            <div class="text-center">
+              <h2>¿En su familia tienen antecedentes de problemas respiratorios?</h2>
+            </div>
+
+            <div class="pt-5 text-center">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fifth" id="inlineFifthRadio1" value="S" formControlName="fifth">
+                <label class="form-check-label" for="inlineFifthRadio1">Si</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fifth" id="inlineFifthRadio2" value="N" formControlName="fifth">
+                <label class="form-check-label" for="inlineFifthRadio2">No</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="container-button">
+          <button type="button" class="btn btn-danger" [disabled]="questionIndex==0" (click)="previousQuestion()">Anterior</button>
+          <button type="button" class="btn btn-success" (click)="nextQuestion()" *ngIf="questionIndex!=4" [disabled]="form.controls[getControlByIndex()].invalid">Siguiente</button>
+          <button type="submit" class="btn btn-success" *ngIf="questionIndex==4" [disabled]="form.invalid">Terminar encuesta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

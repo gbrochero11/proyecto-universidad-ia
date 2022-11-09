@@ -11,6 +11,8 @@ const routes: Routes = [
         .then(module => module.SbrModule)},
     {path:'decisions-tree', loadChildren:()=> import('../decisions-tree/decisions-tree.module')
         .then(module => module.DecisionsTreeModule)},
+    {path:'report', loadChildren:()=> import('../report/report.module')
+        .then(module => module.ReportModule)},
   ]},
 
 
