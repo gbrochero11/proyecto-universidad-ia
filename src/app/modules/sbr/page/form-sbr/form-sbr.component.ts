@@ -7,6 +7,9 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { ApiService } from 'src/app/core/services/api.service';
+import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-form-sbr',
@@ -53,13 +56,28 @@ export class FormSbrComponent implements OnInit {
    questionIndex = 0;
    range = '0 dias';
   isOpen = false;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     setInterval(() => this.isOpen = !this.isOpen, 2000)
   }
 
-  onSubmit(){
+  async onSubmit(){
+    this.spinner.show()
+    this.apiService.sendSurvey(this.form.value)
+    .subscribe(data => {
+      this.spinner.hide()
+      Swal.fire({
+        title: 'Resultado del diagnostico',
+        text: data.join(),
+        confirmButtonText: 'Intentar nuevamente',
+        backdrop: false
+      }).then((result) => {
+        this.form.reset()
+        this.questionIndex = 0
+      })
+    })
   }
 
   nextQuestion(){
