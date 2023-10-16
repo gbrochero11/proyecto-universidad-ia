@@ -8,8 +8,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class WebscrapingComponent implements OnInit {
 
-  URL = 'https://cul-my.sharepoint.com/personal/grbrocherog_ul_edu_co/_layouts/15/embed.aspx?UniqueId=2489cd72-0ef4-459c-b59e-7081613a351c'
-
   constructor(private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
